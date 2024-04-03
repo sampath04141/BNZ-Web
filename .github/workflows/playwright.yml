@@ -1,0 +1,31 @@
+name: Playwright Tests BNZ
+trigger:
+  - master
+pool:
+  vmImage: ubuntu-latest
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: "18"
+    displayName: Install Node.js
+  - script: npm ci
+    displayName: npm ci
+  - script: npx playwright install --with-deps
+    displayName: Install Playwright browsers
+  - script: npx playwright test --project=CI
+    displayName: Run Playwright tests
+    env:
+      CI: "true"
+
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: 'playwright-report'
+      artifact: 'Report'
+      publishLocation: 'pipeline'
+    condition: 'always()'
+    
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '**/e2e-*.xml'
+    condition: 'always()'

@@ -58,14 +58,14 @@ module.exports = defineConfig({
     {
       name: 'ACC',
       use: { ...devices['Desktop Chrome'] },
-      testMatch:["**/tests/AccTesting/*.spec.js"]
+      testMatch:["**/tests/AccessibilityTest/*.spec.js"]
 
     },
 
     {
       name: 'VT',
       use: { ...devices['Desktop Chrome'] },
-      testMatch:["**/tests/VisualTesting/*.spec.js"]
+      testMatch:["**/tests/VisualTest/*.spec.js"]
 
     },
 

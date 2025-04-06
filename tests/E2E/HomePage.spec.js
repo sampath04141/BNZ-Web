@@ -52,8 +52,5 @@ test.describe('Validate main page ', async () => {
 
     })
 
-
-
-
 })
 
